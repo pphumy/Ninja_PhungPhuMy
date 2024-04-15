@@ -20,7 +20,7 @@ public class Enemy : Character
     public Character Target => target;
     private void Update()
     {
-        if(currentState != null)
+        if(currentState != null && !IsDead)
         {
             currentState.OnExecute(this);
         }
@@ -35,6 +35,7 @@ public class Enemy : Character
     public override void OnDespawn()
     {
         base.OnDespawn();
+        Destroy(healthbar.gameObject);
         Destroy(gameObject);
     }
     protected override void OnDeath()
